@@ -52,18 +52,30 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        var admin = require("firebase-admin/app");
+        let admin = require("firebase-admin/app");
 
-        var serviceAccount = require("./personal-notepad-94a50-firebase-adminsdk-3tciv-e2c2e8bcf7.json");
+        let serviceAccount = {
+            type: process.env.type,
+            project_id: process.env.project_id,
+            private_key_id: process.env.private_key_id,
+            private_key: process.env.private_key,
+            client_email: process.env.client_email,
+            client_id: process.env.client_id,
+            auth_uri: process.env.auth_uri,
+            token_uri: process.env.token_uri,
+            auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
+            client_x509_cert_url: process.env.client_x509_cert_url,
+            universe_domain: process.env.universe_domain
+        }
 
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
-            databaseURL: "https://-default-.firebaseio.com"
+            databaseURL: "https://personal-notepad-94a50.firebaseio.com"
         });
         const db = admin.firestore();
 
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const textarea = document.getElementById('markdown');
             const preview = document.getElementById('preview');
             const saveButton = document.getElementById('saveButton');
