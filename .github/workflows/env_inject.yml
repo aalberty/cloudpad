@@ -1,4 +1,4 @@
-name: My Build and Deploy
+name: Build and Deploy
 
 on:
   push:
@@ -27,5 +27,5 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy
-      run: npm run deploy
+    - name: Preview
+      run: npm run preview
