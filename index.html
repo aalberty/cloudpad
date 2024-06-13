@@ -57,7 +57,8 @@
         var serviceAccount = require("./personal-notepad-94a50-firebase-adminsdk-3tciv-e2c2e8bcf7.json");
 
         admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
+            credential: admin.credential.cert(serviceAccount),
+            databaseURL: "https://-default-.firebaseio.com"
         });
         const db = admin.firestore();
 
