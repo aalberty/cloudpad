@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #container {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            max-width: 1200px;
+            height: 80vh;
+        }
+        textarea {
+            width: 50%;
+            height: 100%;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        #preview {
+            width: 50%;
+            height: 100%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <textarea id="markdown" placeholder="Enter Markdown..."></textarea>
+        <div id="preview"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        var admin = require("firebase-admin");
+
+        var serviceAccount = require("path/to/serviceAccountKey.json");
+
+        admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+});
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('markdown');
+            const preview = document.getElementById('preview');
+
+            function updatePreview() {
+                const markdownText = textarea.value;
+                preview.innerHTML = marked.parse(markdownText);
+            }
+
+            textarea.addEventListener('input', updatePreview);
+
+            // Initialize with some sample text
+            textarea.value = "# Welcome to the Markdown Editor\n\nType your *Markdown* here!";
+            updatePreview();
+        });
+    </script>
+</body>
+</html>
