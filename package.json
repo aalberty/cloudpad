@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/aalberty/cloudpad#readme",
   "dependencies": {
+    "@firebase/firestore": "^4.6.3",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.1"
   },
