@@ -60,6 +60,10 @@ jobs:
             --exclude=.github \
             .
           echo ::endgroup::
+        shell: /usr/bin/sh -e {0}
+        env:
+          INPUT_PATH: ./_site
+      
           
       - name: Upload artifact
         uses: actions/upload-artifact@v4.3.3
