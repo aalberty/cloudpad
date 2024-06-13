@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
             height: 100vh;
             margin: 0;
         }
+
         #container {
             display: flex;
             flex-direction: row;
@@ -20,6 +22,7 @@
             max-width: 1200px;
             height: 80vh;
         }
+
         textarea {
             width: 50%;
             height: 100%;
@@ -29,6 +32,7 @@
             box-sizing: border-box;
             resize: none;
         }
+
         #preview {
             width: 50%;
             height: 100%;
@@ -40,6 +44,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="container">
         <textarea id="markdown" placeholder="Enter Markdown..."></textarea>
@@ -47,30 +52,48 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        var admin = require("firebase-admin");
+        var admin = require("firebase-admin/app");
 
         var serviceAccount = require("./personal-notepad-94a50-firebase-adminsdk-3tciv-e2c2e8bcf7.json");
 
         admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
-});
+            credential: admin.credential.cert(serviceAccount)
+        });
+        const db = admin.firestore();
 
 
         document.addEventListener('DOMContentLoaded', function() {
             const textarea = document.getElementById('markdown');
             const preview = document.getElementById('preview');
+            const saveButton = document.getElementById('saveButton');
 
             function updatePreview() {
                 const markdownText = textarea.value;
                 preview.innerHTML = marked.parse(markdownText);
             }
 
-            textarea.addEventListener('input', updatePreview);
+            function saveNote() {
+                db.collection("notes").doc("personalNote").set({
+                    content: textarea.value
+                });
+            }
 
-            // Initialize with some sample text
-            textarea.value = "# Welcome to the Markdown Editor\n\nType your *Markdown* here!";
-            updatePreview();
+            function loadNote() {
+                db.collection("notes").doc("personalNote").get().then((doc) => {
+                    if (doc.exists) {
+                        textarea.value = doc.data().content;
+                        updatePreview();
+                    }
+                });
+            }
+
+            textarea.addEventListener('input', updatePreview);
+            saveButton.addEventListener('click', saveNote);
+
+            // Load the saved note on page load
+            loadNote();
         });
     </script>
 </body>
+
 </html>

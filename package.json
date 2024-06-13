@@ -1,0 +1,26 @@
+{
+  "name": "cloudpad",
+  "version": "1.0.0",
+  "description": "My cloudbased notepad project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aalberty/cloudpad.git"
+  },
+  "keywords": [
+    "notepad",
+    "markdown"
+  ],
+  "author": "Tony Alberty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aalberty/cloudpad/issues"
+  },
+  "homepage": "https://github.com/aalberty/cloudpad#readme",
+  "dependencies": {
+    "firebase-admin": "^12.1.1"
+  }
+}
