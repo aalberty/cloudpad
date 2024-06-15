@@ -16,6 +16,10 @@ permissions:
   pages: write
   id-token: write
 
+# Allow repo secrets
+env:
+  FIREBASE_CONFIG: ${{secrets.FIREBASE_CONFIG}}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
