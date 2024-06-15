@@ -52,12 +52,12 @@
     </div>
 
     <button id="saveButton">Save Note</button>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module">
         import { initializeApp } from "firebase/app";
         import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-
+        console.log(import.meta.env.VITE_FIREBASE_CONFIG);
         let serviceAccount = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
 
         const app = initializeApp(serviceAccount);
