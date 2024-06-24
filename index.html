@@ -57,9 +57,20 @@
     <script type="module">
         import { initializeApp } from "firebase/app";
         import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-        const rawConfig = import.meta.env.VITE_FIREBASE_CONFIG;
-        console.log("config type: ", typeof(rawConfig));
-        let serviceAccount = import.meta.env.VITE_FIREBASE_CONFIG;
+
+        let serviceAccount = {
+            "type": "service_account",
+            "project_id": "personal - notepad - 94a50",
+            "private_key_id": "e2c2e8bcf7fd060be55b02ed21d9ed2c404ea6b9",
+            "private_key": import.meta.env.VITE_FIREBASE_PRIVATE_KEY,
+            "client_email": "firebase-adminsdk-3tciv@personal-notepad-94a50.iam.gserviceaccount.com",
+            "client_id": "104199657300634952718",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3tciv%40personal-notepad-94a50.iam.gserviceaccount.com",
+            "universe_domain": "googleapis.com"
+        };
 
         const app = initializeApp(serviceAccount);
         const db = getFirestore(app);

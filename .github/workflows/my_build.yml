@@ -18,7 +18,7 @@ permissions:
 
 # Allow repo secrets
 env:
-  FIREBASE_CONFIG: ${{secrets.FIREBASE_CONFIG}}
+  FIREBASE_CONFIG: ${{secrets.FIREBASE_PRIVATE_KEY}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,7 +39,7 @@ jobs:
   
       - name: Create .env file
         run: |
-          echo "VITE_FIREBASE_CONFIG=${{ env.FIREBASE_CONFIG }}" >> .env
+          echo "VITE_FIREBASE_PRIVATE_KEY=${{ env.FIREBASE_PRIVATE_KEY }}" >> .env
       
       - name: Install dependencies
         run: npm install
