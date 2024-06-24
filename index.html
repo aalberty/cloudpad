@@ -85,11 +85,15 @@
                 const markdownText = textarea.value;
                 preview.innerHTML = marked.parse(markdownText);
             }
+            
 
             function saveNote() {
+                //TODO: Fix the save
+                /*
                 db.collection("notes").doc("personalNote").set({
                     content: textarea.value
                 });
+                */
             }
 
             function loadNote() {
