@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
     const saveButton = document.getElementById('saveButton');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+    });
 
     function updatePreview() {
         const markdownText = textarea.value;
