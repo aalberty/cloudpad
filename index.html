@@ -57,8 +57,9 @@
     <script type="module">
         import { initializeApp } from "firebase/app";
         import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-        const rawConfig = import.meta.env.VITE_FIREBASE_CONFIG;
-        let serviceAccount = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
+        const rawConfig = import.meta.env.VITE_FIREBASE_CONFIG + "";
+        console.log("rawconfig: ", rawConfig.substring(0, 20));
+        let serviceAccount = JSON.parse(rawConfig);
 
         const app = initializeApp(serviceAccount);
         const db = getFirestore(app);
