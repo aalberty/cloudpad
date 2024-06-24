@@ -88,21 +88,28 @@
             
 
             function saveNote() {
-                //TODO: Fix the save
+                //TODO: Fix the save; getting `db.collection` is not a function
                 /*
                 db.collection("notes").doc("personalNote").set({
                     content: textarea.value
                 });
                 */
+                console.warn("Load and save are not yet implemented")
+
             }
 
             function loadNote() {
+                //TODO: fix; same as save
+                /*
                 db.collection("notes").doc("personalNote").get().then((doc) => {
                     if (doc.exists) {
                         textarea.value = doc.data().content;
                         updatePreview();
                     }
                 });
+                */
+
+                console.warn("Load and save are not yet implemented")
             }
 
             textarea.addEventListener('input', updatePreview);
