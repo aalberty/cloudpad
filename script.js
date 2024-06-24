@@ -21,7 +21,6 @@ const db = getFirestore(app);
 document.addEventListener('DOMContentLoaded', function () {
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
-    const saveButton = document.getElementById('saveButton');
     const toggleBtn = document.getElementById('toggle-btn');
     const sidebar = document.getElementById('sidebar');
 
@@ -34,16 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
         preview.innerHTML = marked.parse(markdownText);
     }
 
-    function saveNote() {
-        console.warn("Load and save are not yet implemented");
-    }
-
     function loadNote() {
         console.warn("Load and save are not yet implemented");
     }
 
     textarea.addEventListener('input', updatePreview);
-    saveButton.addEventListener('click', saveNote);
 
     // Load the saved note on page load
     loadNote();
