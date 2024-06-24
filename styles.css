@@ -7,12 +7,38 @@ body {
     margin: 0;
 }
 
-#container {
+.sidebar {
+    width: 250px;
+    transition: width 0.3s;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 50px;
+}
+
+.toggle-btn {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#workspace {
     display: flex;
     flex-direction: row;
     width: 80%;
     max-width: 1200px;
     height: 80vh;
+    padding: 20px;
+    flex-grow: 1;
+    box-sizing: border-box;
 }
 
 textarea {
