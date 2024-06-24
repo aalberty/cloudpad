@@ -60,6 +60,7 @@
         const rawConfig = import.meta.env.VITE_FIREBASE_CONFIG;
         console.log(rawConfig);
         // let serviceAccount = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
+        let serviceAccount = {};
 
         const app = initializeApp(serviceAccount);
         const db = getFirestore(app);
