@@ -1,5 +1,5 @@
 
-import { google } from 'googleapis';
+const google = require('googleapis');
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const CREDS = {
