@@ -1,5 +1,5 @@
 
-import { google } from 'googleapis';
+import { GoogleApis } from googleapis;
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const CREDS = {
@@ -9,6 +9,7 @@ const CREDS = {
     redirect_uri:   "https://alberty.dev"
 };
 
+const google = new GoogleApis();
 const {OAuth2} = google.auth;
 
 const oAuth2Client = new OAuth2(
