@@ -1,3 +1,5 @@
+// TODO: if you go the gdrive route, remove firebase code
+/* 
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -18,12 +20,11 @@ let serviceAccount = {
 
 const app = initializeApp(serviceAccount);
 const db = getFirestore(app);
+*/
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    console.log("my key: ", JSON.stringify(serviceAccount));
-
-
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
     const toggleBtn = document.getElementById('toggle-btn');
