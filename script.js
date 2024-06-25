@@ -1,5 +1,5 @@
 
-import {google} from 'googleapis';
+import { google } from 'googleapis';
 
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const CREDS = {
@@ -14,6 +14,8 @@ const {OAuth2} = google.auth;
 const oAuth2Client = new OAuth2(
     CREDS.id, CREDS.secret, CREDS.redirect_uri
 );
+
+console.log('my client: ', oAuth2Client);
 
 let token = {
     access_token:   "",
