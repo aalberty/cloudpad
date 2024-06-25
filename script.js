@@ -1,5 +1,6 @@
 
-//import { google } from 'googleapis';
+import { google } from 'googleapis';
+
 const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
 const CREDS = {
     id:             import.meta.env.VITE_CLIENT_ID,
@@ -8,9 +9,9 @@ const CREDS = {
     redirect_uri:   "https://alberty.dev"
 };
 
-console.log("testing: ", JSON.stringify(CREDS));
+const {OAuth2} = google.auth;
 
-const oAuth2Client = new gapi.auth.OAuth2(
+const oAuth2Client = new OAuth2(
     CREDS.id, CREDS.secret, CREDS.redirect_uri
 );
 
@@ -25,7 +26,7 @@ oAuth2Client.setCredentials(token);
 
 // List files in a shared drive
 function listFiles(auth) {
-    const drive = gapi.drive({ version: 'v3', auth });
+    const drive = google.drive({ version: 'v3', auth });
     drive.files.list({
       pageSize: 10,
       fields: 'nextPageToken, files(id, name)',
