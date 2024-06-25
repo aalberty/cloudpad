@@ -23,9 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const preview = document.getElementById('preview');
     const toggleBtn = document.getElementById('toggle-btn');
     const sidebar = document.getElementById('sidebar');
+    const workspace = document.getElementById('workspace');
 
     toggleBtn.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
+        if (sidebar.classList.contains('collapsed')) {
+            workspace.style.marginLeft = "50px";
+        } 
+        
+        else {
+            workspace.style.marginLeft = "250px";
+        }
     });
 
     function updatePreview() {
