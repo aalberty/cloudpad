@@ -8,6 +8,8 @@ const CREDS = {
     redirect_uri:   "https://alberty.dev"
 };
 
+console.log("testing: ", JSON.stringify(CREDS));
+
 const oAuth2Client = new google.auth.OAuth2(
     CREDS.id, CREDS.secret, CREDS.redirect_uri
 );
@@ -16,7 +18,6 @@ let token = {
     access_token:   "",
     refresh_token:  CREDS.refresh_token,
     expiry_date:    -1,
-    scope:          SCOPES,
     token_type:     "Bearer"
 };
 
@@ -45,7 +46,7 @@ function listFiles(auth) {
   }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("testing: ", JSON.stringify(CREDS));
+    
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
     const toggleBtn = document.getElementById('toggle-btn');
