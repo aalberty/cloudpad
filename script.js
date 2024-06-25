@@ -20,6 +20,8 @@ let token = {
     token_type:     "Bearer"
 };
 
+oAuth2Client.setCredentials(token);
+
 // List files in a shared drive
 function listFiles(auth) {
     const drive = google.drive({ version: 'v3', auth });
