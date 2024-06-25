@@ -8,7 +8,7 @@ const CREDS = {
     redirect_uri:   "https://alberty.dev"
 };
 
-const oAuth2Client = new google.auth.oAuth2(
+const oAuth2Client = new google.auth.OAuth2(
     CREDS.id, CREDS.secret, CREDS.redirect_uri
 );
 
