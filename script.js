@@ -1,30 +1,49 @@
-// TODO: if you go the gdrive route, remove firebase code
-/* 
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDoc, setDoc } from "firebase/firestore";
 
-let serviceAccount = {
-    "type": "service_account",
-    "projectId": "personal-notepad-94a50",
-    "privateKeyId": "e2c2e8bcf7fd060be55b02ed21d9ed2c404ea6b9",
-    "privateKey": import.meta.env.VITE_FIREBASE_PRIVATE_KEY,
-    "clientEmail": "firebase-adminsdk-3tciv@personal-notepad-94a50.iam.gserviceaccount.com",
-    "clientId": "104199657300634952718",
-    "authUri": "https://accounts.google.com/o/oauth2/auth",
-    "tokenUri": "https://oauth2.googleapis.com/token",
-    "authProviderX509CertUrl": "https://www.googleapis.com/oauth2/v1/certs",
-    "clientX509CertUrl": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3tciv%40personal-notepad-94a50.iam.gserviceaccount.com",
-    "universeDomain": "googleapis.com"
+const { google } = require('googleapis');
+const SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
+const CREDS = {
+    id:             import.meta.env.VITE_CLIENT_ID,
+    secret:         import.meta.env.VITE_CLIENT_SECRET,
+    refresh_token:  import.meta.env.VITE_REFRESH_TOKEN,
+    redirect_uri:   "https://alberty.dev"
 };
 
+const oAuth2Client = new google.auth.oAuth2(
+    CREDS.id, CREDS.secret, CREDS.redirect_uri
+);
 
-const app = initializeApp(serviceAccount);
-const db = getFirestore(app);
-*/
+let token = {
+    access_token:   "",
+    refresh_token:  CREDS.refresh_token,
+    expiry_date:    -1,
+    scope:          SCOPES,
+    token_type:     "Bearer"
+};
 
-
+// List files in a shared drive
+function listFiles(auth) {
+    const drive = google.drive({ version: 'v3', auth });
+    drive.files.list({
+      pageSize: 10,
+      fields: 'nextPageToken, files(id, name)',
+      supportsAllDrives: true,
+      includeItemsFromAllDrives: true,
+    }, (err, res) => {
+      if (err) return console.error('The API returned an error:', err);
+      const files = res.data.files;
+      if (files.length) {
+        console.log('Files:');
+        files.map((file) => {
+          console.log(`${file.name} (${file.id})`);
+        });
+      } else {
+        console.log('No files found.');
+      }
+    });
+  }
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("testing: ", JSON.stringify(CREDS));
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
     const toggleBtn = document.getElementById('toggle-btn');
