@@ -21,7 +21,7 @@ const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    console.log(serviceAccount.privateKey);
+    console.log("my key: ", serviceAccount.privateKey);
 
 
     const textarea = document.getElementById('markdown');
