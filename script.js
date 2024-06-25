@@ -15,12 +15,15 @@ let serviceAccount = {
     "universeDomain": "googleapis.com"
 };
 
-console.log(serviceAccount.privateKey);
 
 const app = initializeApp(serviceAccount);
 const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    console.log(serviceAccount.privateKey);
+
+
     const textarea = document.getElementById('markdown');
     const preview = document.getElementById('preview');
     const toggleBtn = document.getElementById('toggle-btn');
